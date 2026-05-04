@@ -12,6 +12,7 @@ import service.AutoServiceAppointmentService;
 import service.ClientManagementService;
 import service.ReportingService;
 import service.discount.*;
+import service.QuickPriceCalculator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -131,6 +132,9 @@ public class AutoServiceConsoleApp {
                     case "11":
                         listAllAppointments();
                         break;
+                    case "12":
+                        runQuickPriceCalculator();
+                        break;
                     case "0":
                         System.out.println("До свидания!");
                         return;
@@ -162,6 +166,7 @@ public class AutoServiceConsoleApp {
         System.out.println("9. Зарегистрировать новый автомобиль");
         System.out.println("10. Список всех клиентов");
         System.out.println("11. Список всех записей");
+        System.out.println("12. Быстрый калькулятор стоимости (без записи, антипатерн)");
         System.out.println("0. Выход");
         System.out.print("Выберите действие: ");
     }
@@ -323,6 +328,10 @@ public class AutoServiceConsoleApp {
 
     private String getCurrentDate() {
         return new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+    }
+    private void runQuickPriceCalculator() {
+        QuickPriceCalculator calculator = new QuickPriceCalculator();
+        calculator.calculateAndPrint();
     }
 
     public static void main(String[] args) {
